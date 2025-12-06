@@ -1,15 +1,10 @@
-// // Get data from text file
-// const fs = require('fs');
-//
-// const data = fs.readFileSync('input.txt', 'utf8');
-//
-// // Create an array separating each "rotation" from the text file
-// const dataArray = data.split(/\r?\n/)
+// Get data from text file
+const fs = require('fs');
 
+const data = fs.readFileSync('input.txt', 'utf8');
 
-const data = "L68 L30 R48 L5 R60 L55 L1 L99 R14 L82"
-const dataArray = data.split(" ")
-
+// Create an array separating each "rotation" from the text file
+const dataArray = data.split(/\r?\n/)
 
 let currentValue = 50;
 
@@ -28,3 +23,22 @@ function turnLeft(value) {
     return result
 }
 
+function solution() {
+    let numOfZeros = 0;
+    dataArray.forEach((element) => {
+        if (element.charAt(0) === "R") {
+            currentValue = turnRight(element.slice(1))
+            if (currentValue === 0) {
+                numOfZeros++;
+            }
+        } else {
+            currentValue = turnLeft(element.slice(1))
+            if (currentValue === 0) {
+                numOfZeros++;
+            }
+        }
+    })
+    return numOfZeros
+}
+
+console.log(solution())
