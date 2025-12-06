@@ -28,14 +28,11 @@ function solution() {
     dataArray.forEach((element) => {
         if (element.charAt(0) === "R") {
             currentValue = turnRight(element.slice(1))
-            if (currentValue === 0) {
-                numOfZeros++;
-            }
         } else {
             currentValue = turnLeft(element.slice(1))
-            if (currentValue === 0) {
-                numOfZeros++;
-            }
+        }
+        if (currentValue === 0) {
+            numOfZeros++;
         }
     })
     return numOfZeros
